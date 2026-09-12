@@ -1,0 +1,43 @@
+.color-text-popover-picker {
+  padding: 0.5rem 0.75rem;
+}
+
+.color-text-popover-picker-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--tt-color-text);
+  margin-bottom: 0.375rem;
+}
+
+.color-text-popover-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-text-popover-picker-input {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--tt-gray-light-200);
+  border-radius: var(--tt-radius-lg);
+  cursor: pointer;
+  background: none;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 2px;
+  }
+
+  &::-webkit-color-swatch {
+    border: none;
+    border-radius: var(--tt-radius-md);
+  }
+}
+
+.color-text-popover-picker-hex {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: var(--tt-color-text);
+  flex: 1;
+}
