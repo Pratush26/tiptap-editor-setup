@@ -344,24 +344,26 @@ export function SimpleEditor({ onUpdate, content: initialContent, maxHeight }: S
   return (
     <div className="simple-editor-wrapper border">
       <EditorContext.Provider value={{ editor }}>
-        <Toolbar ref={toolbarRef}>
-          {mobileView === "main" ? (
-            <MainToolbarContent
-              onHighlighterClick={() => setMobileView("highlighter")}
-              onTextColorClick={() => setMobileView("textcolor")}
-              onLinkClick={() => setMobileView("link")}
-              onSearchAndReplaceClick={toggleSearchAndReplace}
-              isSearchAndReplaceOpen={isSearchAndReplaceOpen}
-              searchAndReplaceButtonRef={searchAndReplaceButtonRef}
-              isMobile={isMobile}
-            />
-          ) : (
-            <MobileToolbarContent
-              type={mobileView === "highlighter" ? "highlighter" : mobileView === "textcolor" ? "textcolor" : "link"}
-              onBack={() => setMobileView("main")}
-            />
-          )}
-        </Toolbar>
+        <div className="z-2 relative">
+          <Toolbar ref={toolbarRef}>
+            {mobileView === "main" ? (
+              <MainToolbarContent
+                onHighlighterClick={() => setMobileView("highlighter")}
+                onTextColorClick={() => setMobileView("textcolor")}
+                onLinkClick={() => setMobileView("link")}
+                onSearchAndReplaceClick={toggleSearchAndReplace}
+                isSearchAndReplaceOpen={isSearchAndReplaceOpen}
+                searchAndReplaceButtonRef={searchAndReplaceButtonRef}
+                isMobile={isMobile}
+              />
+            ) : (
+              <MobileToolbarContent
+                type={mobileView === "highlighter" ? "highlighter" : mobileView === "textcolor" ? "textcolor" : "link"}
+                onBack={() => setMobileView("main")}
+              />
+            )}
+          </Toolbar>
+        </div>
 
         <TableMenuBar editor={editor ?? undefined} />
 

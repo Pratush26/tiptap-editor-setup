@@ -58,6 +58,38 @@ body,
   width: 100%;
 }
 
+/* Flex-wrap override for embedded editors (e.g. dashboards) */
+.simple-editor-flex-wrap .tiptap-toolbar[data-variant="fixed"] {
+  flex-wrap: wrap;
+  overflow-x: visible;
+  position: relative;
+  height: auto;
+
+  .tiptap-toolbar-group {
+    flex: 0 1 auto;
+  }
+
+  .tiptap-separator {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .simple-editor-flex-wrap .tiptap-toolbar[data-variant="fixed"] {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    position: relative;
+    height: auto;
+    border-top: none;
+    border-bottom: 1px solid var(--tt-toolbar-border-color);
+    padding: 0 0.5rem;
+
+    .tiptap-toolbar-group {
+      flex: 0 1 auto;
+    }
+  }
+}
+
 .simple-editor-search-and-replace {
   position: fixed;
   top: calc(var(--tt-toolbar-height) + 0.5rem);
