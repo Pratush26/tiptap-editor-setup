@@ -10,6 +10,12 @@ interface SimpleEditorPreviewProps {
   textScale?: number
 }
 
+function wrapTablesInHtml(html: string): string {
+  return html
+    .replace(/<table(\b[^>]*)>/gi, '<div class="table-wrapper"><table$1>')
+    .replace(/<\/table>/gi, '</table></div>')
+}
+
 function renderNode(node: JSONContent, index: number): React.ReactNode {
   if (!node) return null
 
@@ -188,7 +194,7 @@ export function SimpleEditorPreview({
       <div
         className={`simple-editor-preview-content w-full text-base sm:text-lg leading-relaxed ${className ?? ""}`}
         style={{ zoom: textScale }}
-        dangerouslySetInnerHTML={{ __html: cleanHtml }}
+        dangerouslySetInnerHTML={{ __html: wrapTablesInHtml(cleanHtml) }}
       />
     )
   }
