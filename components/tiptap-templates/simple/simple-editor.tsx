@@ -18,6 +18,7 @@ import { Selection } from "@tiptap/extensions"
 import { TextStyle } from "@tiptap/extension-text-style"
 import { Color } from "@tiptap/extension-color"
 import { TableKit } from "@tiptap/extension-table"
+import { NodeBackground } from "@/components/tiptap-extension/node-background-extension"
 
 // --- UI Primitives ---
 import { Button } from "@/components/tiptap-ui-primitive/button"
@@ -284,6 +285,9 @@ export function SimpleEditor({ onUpdate, content: initialContent, maxHeight }: S
         upload: handleImageUpload,
         onError: (error) => console.error("Upload failed:", error),
       }),
+      NodeBackground.configure({
+        types: ["paragraph", "heading", "blockquote", "taskList", "bulletList", "orderedList", "tableCell", "tableHeader"],
+      }),
       TableKit.configure({
         table: {
           HTMLAttributes: {
@@ -344,26 +348,24 @@ export function SimpleEditor({ onUpdate, content: initialContent, maxHeight }: S
   return (
     <div className="simple-editor-wrapper border">
       <EditorContext.Provider value={{ editor }}>
-        <div className="z-2 relative">
-          <Toolbar ref={toolbarRef}>
-            {mobileView === "main" ? (
-              <MainToolbarContent
-                onHighlighterClick={() => setMobileView("highlighter")}
-                onTextColorClick={() => setMobileView("textcolor")}
-                onLinkClick={() => setMobileView("link")}
-                onSearchAndReplaceClick={toggleSearchAndReplace}
-                isSearchAndReplaceOpen={isSearchAndReplaceOpen}
-                searchAndReplaceButtonRef={searchAndReplaceButtonRef}
-                isMobile={isMobile}
-              />
-            ) : (
-              <MobileToolbarContent
-                type={mobileView === "highlighter" ? "highlighter" : mobileView === "textcolor" ? "textcolor" : "link"}
-                onBack={() => setMobileView("main")}
-              />
-            )}
-          </Toolbar>
-        </div>
+        <Toolbar ref={toolbarRef}>
+          {mobileView === "main" ? (
+            <MainToolbarContent
+              onHighlighterClick={() => setMobileView("highlighter")}
+              onTextColorClick={() => setMobileView("textcolor")}
+              onLinkClick={() => setMobileView("link")}
+              onSearchAndReplaceClick={toggleSearchAndReplace}
+              isSearchAndReplaceOpen={isSearchAndReplaceOpen}
+              searchAndReplaceButtonRef={searchAndReplaceButtonRef}
+              isMobile={isMobile}
+            />
+          ) : (
+            <MobileToolbarContent
+              type={mobileView === "highlighter" ? "highlighter" : mobileView === "textcolor" ? "textcolor" : "link"}
+              onBack={() => setMobileView("main")}
+            />
+          )}
+        </Toolbar>
 
         <TableMenuBar editor={editor ?? undefined} />
 

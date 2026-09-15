@@ -10,12 +10,6 @@ interface SimpleEditorPreviewProps {
   textScale?: number
 }
 
-function wrapTablesInHtml(html: string): string {
-  return html
-    .replace(/<table(\b[^>]*)>/gi, '<div class="table-wrapper"><table$1>')
-    .replace(/<\/table>/gi, '</table></div>')
-}
-
 function renderNode(node: JSONContent, index: number): React.ReactNode {
   if (!node) return null
 
@@ -162,10 +156,24 @@ function renderNode(node: JSONContent, index: number): React.ReactNode {
       return <tr key={index}>{children}</tr>
 
     case "tableCell":
-      return <td key={index}>{children}</td>
+      return (
+        <td
+          key={index}
+          style={node.attrs?.backgroundColor ? { backgroundColor: node.attrs.backgroundColor } : undefined}
+        >
+          {children}
+        </td>
+      )
 
     case "tableHeader":
-      return <th key={index}>{children}</th>
+      return (
+        <th
+          key={index}
+          style={node.attrs?.backgroundColor ? { backgroundColor: node.attrs.backgroundColor } : undefined}
+        >
+          {children}
+        </th>
+      )
 
     case "text":
       return <span key={index}>{node.text}</span>
@@ -186,15 +194,11 @@ export function SimpleEditorPreview({
   if (!content) return null
 
   if (typeof content === "string") {
-    const cleanHtml = content
-      .replace(/\s+target\s*=\s*"_blank"/gi, "")
-      .replace(/\s+rel\s*=\s*"noopener\s+noreferrer"/gi, "")
-
     return (
       <div
         className={`simple-editor-preview-content w-full text-base sm:text-lg leading-relaxed ${className ?? ""}`}
         style={{ zoom: textScale }}
-        dangerouslySetInnerHTML={{ __html: wrapTablesInHtml(cleanHtml) }}
+        dangerouslySetInnerHTML={{ __html: content }}
       />
     )
   }
