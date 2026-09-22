@@ -21,7 +21,6 @@ import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Badge } from "@/components/tiptap-ui-primitive/badge"
 
 // --- Styles ---
-import "@/components/tiptap-ui/color-text-button/color-text-button.scss"
 
 export interface ColorTextButtonProps
   extends Omit<ButtonProps, "type">,

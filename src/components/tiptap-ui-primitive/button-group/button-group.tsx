@@ -3,7 +3,6 @@ import { useRender } from "@base-ui/react/use-render"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/tiptap-utils"
 import { Separator } from "@/components/tiptap-ui-primitive/separator"
-import "./button-group.scss"
 
 const buttonGroupVariants = cva("tiptap-button-group", {
   variants: {

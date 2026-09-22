@@ -9,7 +9,6 @@ import { Input } from "@/components/tiptap-ui-primitive/input"
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Textarea } from "@/components/tiptap-ui-primitive/textarea"
 
-import "./input-group.scss"
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
   return (

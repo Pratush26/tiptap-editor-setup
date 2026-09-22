@@ -34,7 +34,6 @@ import {
 import { Input } from "@/components/tiptap-ui-primitive/input"
 import { ButtonGroup } from "@/components/tiptap-ui-primitive/button-group"
 
-import "./link-popover.scss"
 
 export interface LinkMainProps {
   /**

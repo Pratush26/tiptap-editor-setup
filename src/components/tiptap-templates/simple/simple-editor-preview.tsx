@@ -2,7 +2,6 @@
 
 import type { JSONContent } from "@tiptap/core"
 import type { JSX } from "react"
-import "@/components/tiptap-templates/simple/simple-editor-preview.scss"
 
 interface SimpleEditorPreviewProps {
   content: JSONContent | string

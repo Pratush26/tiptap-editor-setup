@@ -36,7 +36,6 @@ import {
 import { ButtonGroup } from "@/components/tiptap-ui-primitive/button-group"
 
 // --- Styles ---
-import "@/components/tiptap-ui/color-text-popover/color-text-popover.scss"
 
 export interface ColorTextPopoverContentProps {
   editor?: Editor | null

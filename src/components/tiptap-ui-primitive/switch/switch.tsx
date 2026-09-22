@@ -4,7 +4,6 @@ import { Switch as SwitchPrimitive } from "@base-ui/react/switch"
 
 import { cn } from "@/lib/tiptap-utils"
 
-import "./switch.scss"
 
 function Switch({
   className,
