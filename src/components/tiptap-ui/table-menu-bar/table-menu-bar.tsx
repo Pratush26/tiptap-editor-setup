@@ -374,7 +374,7 @@ export function TableMenuBar({ editor: providedEditor }: TableMenuBarProps) {
   const hasHeaderRow = firstRowData ? isFirstRowHeader(firstRowData.row) : false
 
   return (
-    <div className="flex items-center gap-1 px-2 py-1 border-b bg-muted/50 text-sm">
+    <div className="tiptap-table-menu-bar">
       <ToolbarGroup>
         <Button
           type="button"

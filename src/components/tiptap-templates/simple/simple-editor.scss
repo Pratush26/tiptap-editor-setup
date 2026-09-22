@@ -56,6 +56,12 @@ body,
 
 .simple-editor-wrapper {
   width: 100%;
+  border-radius: var(--tt-radius-lg);
+  box-shadow: 0 1px 4px var(--tt-gray-light-a-200);
+}
+
+.dark .simple-editor-wrapper {
+  box-shadow: 0 1px 4px var(--tt-gray-dark-a-200);
 }
 
 /* Flex-wrap override for embedded editors (e.g. dashboards) */

@@ -70,14 +70,14 @@ export function TableInsertButton({
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="start" className="p-2">
-        <div className="mb-2 text-xs text-muted-foreground font-medium">
+      <DropdownMenuContent align="start">
+        <div className="tiptap-table-insert-label">
           {hoveredRows > 0 && hoveredCols > 0
             ? `${hoveredRows} x ${hoveredCols}`
             : "Insert table"}
         </div>
         <div
-          className="inline-grid gap-0.5"
+          className="tiptap-table-insert-grid"
           style={{ gridTemplateColumns: `repeat(${GRID_MAX_COLS}, 1.25rem)` }}
           onMouseLeave={() => {
             setHoveredRows(0)
@@ -91,11 +91,8 @@ export function TableInsertButton({
                 <button
                   key={`${row}-${col}`}
                   type="button"
-                  className={`h-5 w-5 rounded-sm border transition-colors ${
-                    isHighlighted
-                      ? "bg-primary border-primary"
-                      : "bg-muted border-border hover:bg-muted/80"
-                  }`}
+                  className="tiptap-table-insert-cell"
+                  data-highlighted={isHighlighted ? "true" : "false"}
                   onMouseEnter={() => {
                     setHoveredRows(row + 1)
                     setHoveredCols(col + 1)

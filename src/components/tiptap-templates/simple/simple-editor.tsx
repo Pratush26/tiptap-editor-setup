@@ -338,7 +338,7 @@ export function SimpleEditor({ onUpdate, content: initialContent, maxHeight }: S
   }, [closeSearchAndReplace, isSearchAndReplaceOpen, openSearchAndReplace])
 
   return (
-    <div className="simple-editor-wrapper border">
+    <div className="simple-editor-wrapper simple-editor-flex-wrap">
       <EditorContext.Provider value={{ editor }}>
         <Toolbar ref={toolbarRef}>
           {mobileView === "main" ? (
