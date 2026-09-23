@@ -1,0 +1,10 @@
+.tiptap-table-menu-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--tt-toolbar-border-color);
+  background-color: var(--tt-toolbar-bg-color);
+  font-size: 0.75rem;
+}
