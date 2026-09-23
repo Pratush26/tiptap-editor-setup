@@ -1,8 +1,13 @@
 # Tiptap Editor Setup
-This is an rich text editor setup process for any next js project
 
-### Installation Command
-```npm i @pratush26/tiptap-rte```
+A rich text editor setup for Next.js projects using Tiptap.
 
-### Packages Details
-[Package Link]("https://www.npmjs.com/package/@pratush26/tiptap-rte")
+## Installation
+
+```
+npm install @pratush26/tiptap-rte
+```
+
+## Package Details
+
+[View Package on npm](https://www.npmjs.com/package/@pratush26/tiptap-rte)
