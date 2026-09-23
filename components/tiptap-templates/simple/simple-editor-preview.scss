@@ -98,8 +98,8 @@
   }
 
   a {
+    color: #2563eb;
     text-decoration: underline;
-    font-weight: 700;
   }
 
   strong {
@@ -118,7 +118,7 @@
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    max-width: 100%;
+    margin: 1.5rem 0;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -128,7 +128,7 @@
 
   th {
     background-color: var(--primary);
-    color: white;
+    color: var(--primary-foreground);
     font-weight: 600;
     text-align: left;
     padding: 0.5rem 0.75rem;
@@ -153,31 +153,12 @@
 
 .table-wrapper {
   overflow-x: auto;
-  width: min-content;
-  max-width: 100%;
   -webkit-overflow-scrolling: touch;
-  margin: auto;
+  margin: 1.5rem 0;
 
   table.simple-editor-preview-content {
     margin: 0;
     border: none;
     border-radius: 0;
   }
-}
-::-webkit-scrollbar {
-  width: 0.25rem;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--tt-scrollbar-color) transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--tt-scrollbar-color);
-  border-radius: 9999px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
 }
