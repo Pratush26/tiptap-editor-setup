@@ -118,7 +118,7 @@
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    margin: 1.5rem 0;
+    margin: 0 0;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -161,4 +161,21 @@
     border: none;
     border-radius: 0;
   }
+}
+::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tt-scrollbar-color) transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--tt-scrollbar-color);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
