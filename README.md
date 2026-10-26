@@ -7,7 +7,7 @@ A rich text editor setup for Next.js projects using Tiptap.
 ```
 npm install @pratush26/tiptap-rte
 ```
-1. In the root layout.tsx import this
+1. In the root layout.tsx import this over the global.css import line
 ```
 import "@pratush26/tiptap-rte/styles.css"
 ```
