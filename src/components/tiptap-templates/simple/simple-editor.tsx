@@ -19,6 +19,8 @@ import { TextStyle } from "@tiptap/extension-text-style"
 import { Color } from "@tiptap/extension-color"
 import { TableKit } from "@tiptap/extension-table"
 import { NodeBackground } from "@/components/tiptap-extension/node-background-extension"
+import { stripTrailingEmptyParagraphs } from "@/components/tiptap-templates/simple/simple-editor-preview"
+import { cleanEditorJson } from "@/utils/clean-html"
 
 // --- UI Primitives ---
 import { Button } from "@/components/tiptap-ui-primitive/button"
@@ -306,6 +308,24 @@ export function SimpleEditor({ onUpdate, content: initialContent, maxHeight }: S
     content: initialContent ?? content,
     onUpdate: ({ editor }) => onUpdate?.(editor),
   })
+
+  // Automatically strip trailing empty paragraphs (e.g. the exit node left
+  // after a list) from serialized output so consumers never receive a
+  // dangling <p></p> after <ul>/<ol>.
+  useEffect(() => {
+    if (!editor) return
+
+    const originalGetHTML = editor.getHTML.bind(editor)
+    const originalGetJSON = editor.getJSON.bind(editor)
+
+    editor.getHTML = () => stripTrailingEmptyParagraphs(originalGetHTML())
+    editor.getJSON = () => cleanEditorJson(originalGetJSON()) as any
+
+    return () => {
+      editor.getHTML = originalGetHTML
+      editor.getJSON = originalGetJSON
+    }
+  }, [editor])
 
   useCursorVisibility({
     editor,
