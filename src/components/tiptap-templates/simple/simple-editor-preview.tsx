@@ -13,6 +13,21 @@ function wrapTablesInHtml(html: string): string {
     .replace(/<\/table>/gi, '</table></div>')
 }
 
+function isEmptyParagraph(node: JSONContent): boolean {
+  if (node?.type !== "paragraph") return false
+  const content = node.content ?? []
+  if (content.length === 0) return true
+  return content.every((child) => {
+    if (child?.type === "text") return !child.text || !child.text.trim()
+    if (child?.type === "hardBreak") return true
+    return false
+  })
+}
+
+export function stripTrailingEmptyParagraphs(html: string): string {
+  return html.replace(/(?:<p>(?:\s|&nbsp;|<br\s*\/?>)*<\/p>\s*)+$/i, "")
+}
+
 function renderNode(node: JSONContent, index: number): React.ReactNode {
   if (!node) return null
 
@@ -144,17 +159,22 @@ export function SimpleEditorPreview({
       <div
         className={`simple-editor-preview-content${className ? ` ${className}` : ""}`}
         style={{ zoom: textScale }}
-        dangerouslySetInnerHTML={{ __html: wrapTablesInHtml(content) }}
+        dangerouslySetInnerHTML={{ __html: stripTrailingEmptyParagraphs(wrapTablesInHtml(content)) }}
       />
     )
   }
+
+  const nodes = content.content ?? []
+  let end = nodes.length
+  while (end > 0 && isEmptyParagraph(nodes[end - 1])) end--
+  const visibleNodes = nodes.slice(0, end)
 
   return (
     <div
       className={`simple-editor-preview-content${className ? ` ${className}` : ""}`}
       style={{ zoom: textScale }}
     >
-      {content.content?.map((node, i) => renderNode(node, i)) ?? null}
+      {visibleNodes.map((node, i) => renderNode(node, i)) ?? null}
     </div>
   )
 }
